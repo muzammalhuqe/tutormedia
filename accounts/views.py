@@ -50,7 +50,7 @@ class UserRegistrationView(CreateView):
         user.save()
         token = default_token_generator.make_token(user)
         uid = urlsafe_base64_encode(force_bytes(user.pk))
-        confirm_link = f"https://tutormediabd.onrender.com/accounts/active/{uid}/{token}"
+        confirm_link = f"https://tutormedia.onrender.com/accounts/active/{uid}/{token}"
         email_subject = "Confirm Your Email"
         email_body = render_to_string('confirm_email.html', {'confirm_link': confirm_link})
         
