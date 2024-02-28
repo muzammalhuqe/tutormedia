@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+
+<div class="shadow p-3 mb-5 bg-white my-5 rounded-lg" style="border-radius: 50px">
+  <div class="row">
+    <h1 class="text-center pb-4">Signup Page</h1>
+    <hr>
+    <div class="col-12 col-md-6">
+      <img style="width: 100%;" class="mt-5" src="{% static 'img/singup.png' %}" alt="image">
+    </div>
+    <div class="col-12 col-md-6">
+      <form method="post" enctype="multipart/form-data" class="mt-2 signup-form-style" novalidate>
+        <br>
+        {% csrf_token %}
+        <!-- {{form | crispy }} -->
+        {% for field in form %}
+          {% if field.name != 'image' %}
+            <div class="form-group">
+              {{ field.label_tag }}
+              {{ field }}
+              {% if field.errors %}
+                <span class="text-danger">{{ field.errors }}</span>
+              {% endif %}
+            </div>
+          {% else %}
+            <div class="form-group">
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {{ field }}
+              {% if field.errors %}
+                <span class="text-danger">{{ field.errors }}</span>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+        <br />
+        <button class="btn btn-primary w-100 rounded-pill" type="submit">Register</button>
+        <br />
+        <small>Already have an Account <a href="{% url 'login' %}">Login</a></small>
+        {% comment %} <small>Tutor Register <a href="{% url 'tutorsignup' %}">Register</a></small> {% endcomment %}
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
