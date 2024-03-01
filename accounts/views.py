@@ -19,6 +19,9 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from .forms import UserUpdateForm
 from .models import UserAccount
+from tutor.models import TutorAccount
+from tutor.forms import TutorUpdateForm
+
 
 
 class UserRegistrationView(CreateView):
@@ -87,6 +90,18 @@ class UserLoginView(LoginView):
         return super().dispatch(request, *args, **kwargs)
     
 
+class TutorLoginView(LoginView):
+    template_name = 'tutor_login.html'
+
+    def get_success_url(self):
+        return reverse_lazy('profile')
+    
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect(reverse_lazy('profile'))
+        return super().dispatch(request, *args, **kwargs)
+    
+
     
 
 @login_required
@@ -108,8 +123,8 @@ def logout_view(request):
 #         form = UserUpdateForm(instance=user)
 
 #     return render(request, 'profile.html', {'form': form})
-from .models import UserAccount
-from .forms import UserUpdateForm  # Import your UserUpdateForm
+
+
 @login_required
 def profile(request):
     user = request.user
@@ -124,6 +139,26 @@ def profile(request):
         form = UserUpdateForm(instance=user)
 
     return render(request, 'profile.html', {'form': form, 'profile': profile})
+
+
+# @login_required
+# def Tutorprofile(request):
+#     tutor = request.user
+#     tutorprofile = TutorAccount.objects.get(user=tutor)
+
+#     if request.method == 'POST':
+#         tutor_form = TutorUpdateForm(request.POST, request.FILES, instance=tutorprofile)  # Pass tutorprofile as instance
+#         if tutor_form.is_valid():
+#             tutor_form.save()
+#             return redirect('tutorprofile')
+#     else:
+#         tutor_form = TutorUpdateForm(instance=tutorprofile)  # Pass tutorprofile as instance
+
+#     return render(request, 'tutorprofile.html', {'tutor_form': tutor_form, 'tutorprofile': tutorprofile})
+
+
+
+
 
 @login_required
 def pass_change(request):

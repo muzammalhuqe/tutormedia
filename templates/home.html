@@ -129,8 +129,9 @@
                   <img src="{{ t.image.url }}" class="card-img-top" loading="lazy" alt="...">
               </div>
               <div class="card-body p-0 pt-4">
-                  <div class="d-flex">
-                      <h3 class="flex-grow-1 h5 text-center">{{ t.full_name}}</h3>
+                  <div class="">
+                      <h3 class="flex-grow-1 h5 text-center">{{ t.user.first_name}} {{ t.user.last_name}}</h3>
+                      <p class="flex-grow-1 text-center">Subject : {{ t.subject }} </p>
                   </div>
               </div>
           </div>

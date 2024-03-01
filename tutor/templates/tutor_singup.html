@@ -5,11 +5,8 @@
 
 <div class="shadow p-3 mb-5 bg-white my-5 rounded-lg" style="border-radius: 50px">
   <div class="row">
-    <h1 class="text-center pb-4">Signup Page</h1>
+    <h1 class="text-center pb-4">Tutor Signup Page</h1>
     <hr>
-    <div class="col-12 col-md-6">
-      <img style="width: 100%;" class="mt-5" src="{% static 'img/singup.png' %}" alt="image">
-    </div>
     <div class="col-12 col-md-6">
       <form method="post" enctype="multipart/form-data" class="mt-2 signup-form-style" novalidate>
         <br>
@@ -37,8 +34,11 @@
         <br />
         <button class="btn btn-primary w-100 rounded-pill" type="submit">Register</button>
         <br />
-        <small>Already have an Account <a href="{% url 'login' %}">Login</a></small>
+        {% comment %} <small>Already have an Account <a href="{% url 'tutorlogin' %}">Login</a></small> {% endcomment %}
       </form>
+    </div>
+    <div class="col-12 col-md-6">
+      <img style="width: 100%;" class="mt-5" src="{% static 'img/tutorSignup.png' %}" alt="image">
     </div>
   </div>
 </div>

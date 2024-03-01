@@ -22,9 +22,6 @@ from django.views.generic import DetailView
 
 
 
-
-
-
 class TutorRegistrationView(CreateView):
     form_class = TutorRegistrationForm
     template_name = 'tutor_singup.html'
@@ -63,7 +60,7 @@ class TutorRegistrationView(CreateView):
         email = EmailMultiAlternatives(email_subject, '', to=[user.email])
         email.attach_alternative(email_body, "text/html")
         email.send()
-        return redirect('login')
+        return redirect('homepage')
 
 
 def activate(request, uid64, token):
@@ -79,6 +76,39 @@ def activate(request, uid64, token):
         return redirect('login')
     else:
         return redirect('signup')
+
+
+
+# class TutorLoginView(LoginView):
+#     template_name = 'tutor_login.html'
+
+#     def get_success_url(self):
+#         return reverse_lazy('profile')
+    
+#     def dispatch(self, request, *args, **kwargs):
+#         if request.user.is_authenticated:
+#             return redirect(reverse_lazy('profile'))
+#         return super().dispatch(request, *args, **kwargs)
+
+
+
+# @login_required
+# def Tutorprofile(request):
+#     tutor = request.user
+#     tutorprofile = TutorAccount.objects.get(user=tutor)
+
+#     if request.method == 'POST':
+#         tutor_form = TutorUpdateForm(request.POST, request.FILES, instance=tutor)
+#         if tutor_form.is_valid():
+#             tutor_form.save()
+#             return redirect('tutorprofile')
+#     else:
+#         tutor_form = TutorUpdateForm(instance=tutor)
+
+#     return render(request, 'tutorprofile.html', {'tutor_form': tutor_form, 'tutorprofile': tutorprofile})
+
+
+
 
 
 

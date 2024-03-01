@@ -6,8 +6,10 @@ urlpatterns = [
     path('active/<uid64>/<token>/', views.activate, name = 'activate'),
     path('login/', views.UserLoginView.as_view(), name='login'),
     path('logout/', views.logout_view, name='logout'),
+    path('tutor_login/', views.TutorLoginView.as_view(), name = 'tutorlogin'),
     # path('logout/', views.UserLogoutView.as_view(), name='logout'),
     path('profile/', views.profile, name='profile'),
+    # path('tutorprofile/', views.Tutorprofile, name='tutorprofile'),
     path('pass_change/', views.pass_change, name='passchange'),
     
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name='password_reset.html'), name='reset_password'),

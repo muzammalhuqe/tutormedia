@@ -3,9 +3,11 @@
 {% block content %}
 {% load static %}
 
+
+
 <div class="shadow p-3 mb-5 bg-white my-5 rounded-lg" style="border-radius: 50px">
   <div class="row">
-    <h1 class="text-center pb-4">Signup Page</h1>
+    <h1 class="text-center pb-4">User Signup Page</h1>
     <hr>
     <div class="col-12 col-md-6">
       <img style="width: 100%;" class="mt-5" src="{% static 'img/singup.png' %}" alt="image">
@@ -37,8 +39,8 @@
         <br />
         <button class="btn btn-primary w-100 rounded-pill" type="submit">Register</button>
         <br />
-        <small>Already have an Account <a href="{% url 'login' %}">Login</a></small>
-        {% comment %} <small>Tutor Register <a href="{% url 'tutorsignup' %}">Register</a></small> {% endcomment %}
+        <small>Already have an Account <a href="{% url 'login' %}">Login</a></small><br>
+        <small>Tutor Register <a href="{% url 'tutorsignup' %}">Register</a></small>
       </form>
     </div>
   </div>
